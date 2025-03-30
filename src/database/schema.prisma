@@ -1,0 +1,22 @@
+generator client {
+    provider      = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = "file:./db.sqlite"
+}
+
+model Plugin {
+    id          String  @id @default(uuid())
+    name        String
+    link        String
+    active      Boolean @default(true)
+    description String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("plugins")
+}
