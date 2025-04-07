@@ -4,8 +4,9 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = "file:./db.sqlite"
+    provider  = "postgresql"
+    url       = env("POSTGRESQL_DB_URL")
+    directUrl = env("POSTGRESQL_DB_DIRECT_URL")
 }
 
 model Plugin {
