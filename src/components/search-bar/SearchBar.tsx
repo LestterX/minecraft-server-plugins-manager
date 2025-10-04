@@ -1,12 +1,14 @@
 'use client'
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ButtonAdd } from "../plugins-page/button-add/ButtonAdd";
 import { Input } from "../ui/input";
 import { useDebouncedCallback } from 'use-debounce'
-import { ButtonHome } from "../button-home/ButtonHome";
 
-export function SearchBar() {
+type TSearchBarProps = {
+    children?: React.ReactNode[] | React.ReactNode
+}
+
+export function SearchBar({ children }: TSearchBarProps) {
     const searchParams = useSearchParams()
     const { replace } = useRouter()
     const pathname = usePathname()
@@ -34,8 +36,9 @@ export function SearchBar() {
                 onChange={e => handleSearch(e.target.value)}
                 defaultValue={searchParams.get('query')?.toString()}
             />
-            <ButtonAdd />
-            <ButtonHome />
+            { // Extra buttons or elements
+                children
+            }
         </section>
     )
 }

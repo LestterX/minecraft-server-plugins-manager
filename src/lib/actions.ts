@@ -57,3 +57,17 @@ export async function deleteById(id: string) {
     if (!plugin) return { error: 'Erro ao remover plugin' }
     return { success: 'Plugin removido com sucesso' }
 }
+
+export async function getAllPlayers(filter?: string) {
+    const players = await prisma.player.findMany({
+        where: {
+            name: {
+                contains: filter
+            }
+        },
+        orderBy: {
+            name: 'asc',
+        }
+    })
+    return players
+}
