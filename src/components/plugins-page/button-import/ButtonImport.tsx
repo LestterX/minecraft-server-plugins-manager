@@ -25,8 +25,17 @@ export function ButtonImport() {
     };
     return (
         <div className="flex flex-col gap-2">
-            <input type="file" accept="application/json" onChange={handleFileChange} />
-            <Button onClick={handleImport}>Importar JSON para banco</Button>
+            {/* hidden native input, label acts as styled drop/click area */}
+            <p className="text-sm">Clique no campo abaixo para adicionar um novo arquivo</p>
+            <label className="w-full h-16 flex items-center justify-center border-2 border-dashed rounded-md cursor-pointer select-none text-center text-sm text-muted-foreground">
+                <input className="sr-only" type="file" accept="application/json" onChange={handleFileChange} />
+                {!file ? (
+                    <span className="text-2xl font-bold">+</span>
+                ) : (
+                    <span className="px-2 truncate" title={file.name}>{file.name}</span>
+                )}
+            </label>
+            <Button disabled={file ? false : true} variant={file ? "destructive" : "secondary"} onClick={handleImport} className="hover:cursor-pointer">Importar JSON para banco</Button>
         </div>
     )
 }

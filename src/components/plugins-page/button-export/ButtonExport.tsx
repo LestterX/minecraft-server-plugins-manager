@@ -27,7 +27,7 @@ export function ButtonExport() {
         // downloadAnchorNode.remove();
     }
     return (
-        <Button onClick={handleExport}>
+        <Button className="hover:cursor-pointer" onClick={handleExport}>
             Exportar
         </Button>
     )
