@@ -32,9 +32,9 @@ export async function PlayersListArea({ search }: TPlayersListAreaProps) {
                     players && (
                         players.map(({ name, uuid, expiresOn }, index) => (
                             <TableRow key={index}>
-                                <TableCell className="text-center">{name}</TableCell>
-                                <TableCell className="text-center">{uuid}</TableCell>
-                                <TableCell className="text-center">{expiresOn ? new Date(expiresOn).toLocaleDateString("pt-BR", {
+                                <TableCell className="text-center whitespace-normal break-words">{name}</TableCell>
+                                <TableCell className="text-center whitespace-normal break-words">{uuid}</TableCell>
+                                <TableCell className="text-center whitespace-normal break-words">{expiresOn ? new Date(expiresOn).toLocaleDateString("pt-BR", {
                                     weekday: "long",
                                     day: "2-digit",
                                     month: "short",
