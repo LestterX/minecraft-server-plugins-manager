@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ButtonAdd } from "../button-add/ButtonAdd";
+import { ButtonAdd } from "../plugins-page/button-add/ButtonAdd";
 import { Input } from "../ui/input";
 import { useDebouncedCallback } from 'use-debounce'
 import { ButtonHome } from "../button-home/ButtonHome";

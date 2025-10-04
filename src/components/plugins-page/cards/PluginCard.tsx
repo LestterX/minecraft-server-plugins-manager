@@ -5,7 +5,7 @@ import {
     CardContent,
     CardFooter,
 } from '@/components/ui/card'
-import { Button } from '../ui/button'
+import { Button } from '../../ui/button'
 import { ButtonDetails } from '../button-details/ButtonDetails'
 import { Plugin } from '@prisma/client'
 import { ButtonDelete } from '../button-delete/ButtonDelete'

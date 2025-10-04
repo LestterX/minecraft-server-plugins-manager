@@ -10,23 +10,18 @@ import {
     FormLabel,
     FormControl,
     FormMessage
-} from "../ui/form"
-import { Input } from "../ui/input"
+} from "../../ui/form"
+import { Input } from "../../ui/input"
 import { useState, useTransition } from "react"
-import { update } from "@/lib/actions"
+import { create } from "@/lib/actions"
 import { toast } from "sonner"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
-import { Textarea } from "../ui/textarea"
-import { Button } from "../ui/button"
-import { Plugin } from "@prisma/client"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../ui/select"
+import { Textarea } from "../../ui/textarea"
+import { Button } from "../../ui/button"
 
-type TEditFormProps = {
-    plugin: Plugin
-}
-
-export function EditForm({ plugin }: TEditFormProps) {
+export function CreateForm() {
     const [isPending, startTransition] = useTransition()
-    const [selectValue, setSelectValue] = useState<boolean>(plugin.active)
+    const [selectValue, setSelectValue] = useState<boolean>(false)
     const createSchema = z.object({
         name: z.string(),
         link: z.string(),
@@ -35,9 +30,9 @@ export function EditForm({ plugin }: TEditFormProps) {
     const form = useForm<z.infer<typeof createSchema>>({
         resolver: zodResolver(createSchema),
         defaultValues: {
-            name: plugin.name,
-            link: plugin.link,
-            description: plugin.description ?? '',
+            name: '',
+            link: '',
+            description: '',
         }
     })
     async function onSubmit(values: z.infer<typeof createSchema>) {
@@ -47,7 +42,7 @@ export function EditForm({ plugin }: TEditFormProps) {
             description,
         } = values
         startTransition(() => {
-            update(plugin.id, {
+            create({
                 name,
                 link,
                 description,
@@ -57,7 +52,7 @@ export function EditForm({ plugin }: TEditFormProps) {
                     const { message, pluginName } = data.success
                     return toast(`${pluginName.toUpperCase()} ${message}`)
                 }
-                return toast('Erro ao atualizar plugin')
+                return toast('Erro ao criar plugin')
             })
             form.reset()
         })
@@ -122,7 +117,7 @@ export function EditForm({ plugin }: TEditFormProps) {
                     type="submit"
                     className="w-full hover:cursor-pointer"
                 >
-                    Salvar
+                    Adicionar
                 </Button>
             </form>
         </Form >

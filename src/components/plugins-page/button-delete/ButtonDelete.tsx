@@ -1,11 +1,11 @@
 'use client'
 
 import { useTransition } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { Plugin } from "@prisma/client";
 import { deleteById } from "@/lib/actions";
 import { toast } from "sonner";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../ui/alert-dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../../ui/alert-dialog";
 
 type TButtonDetailsProps = {
     plugin: Plugin

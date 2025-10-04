@@ -1,11 +1,11 @@
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import {
     Dialog,
     DialogTrigger,
     DialogContent,
     DialogTitle,
     DialogDescription
-} from "../ui/dialog";
+} from "../../ui/dialog";
 import { EditForm } from "../edit-form/EditForm";
 import { Plugin } from "@prisma/client";
 

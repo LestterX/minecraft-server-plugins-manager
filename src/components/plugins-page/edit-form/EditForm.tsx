@@ -10,18 +10,23 @@ import {
     FormLabel,
     FormControl,
     FormMessage
-} from "../ui/form"
-import { Input } from "../ui/input"
+} from "../../ui/form"
+import { Input } from "../../ui/input"
 import { useState, useTransition } from "react"
-import { create } from "@/lib/actions"
+import { update } from "@/lib/actions"
 import { toast } from "sonner"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
-import { Textarea } from "../ui/textarea"
-import { Button } from "../ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../ui/select"
+import { Textarea } from "../../ui/textarea"
+import { Button } from "../../ui/button"
+import { Plugin } from "@prisma/client"
 
-export function CreateForm() {
+type TEditFormProps = {
+    plugin: Plugin
+}
+
+export function EditForm({ plugin }: TEditFormProps) {
     const [isPending, startTransition] = useTransition()
-    const [selectValue, setSelectValue] = useState<boolean>(false)
+    const [selectValue, setSelectValue] = useState<boolean>(plugin.active)
     const createSchema = z.object({
         name: z.string(),
         link: z.string(),
@@ -30,9 +35,9 @@ export function CreateForm() {
     const form = useForm<z.infer<typeof createSchema>>({
         resolver: zodResolver(createSchema),
         defaultValues: {
-            name: '',
-            link: '',
-            description: '',
+            name: plugin.name,
+            link: plugin.link,
+            description: plugin.description ?? '',
         }
     })
     async function onSubmit(values: z.infer<typeof createSchema>) {
@@ -42,7 +47,7 @@ export function CreateForm() {
             description,
         } = values
         startTransition(() => {
-            create({
+            update(plugin.id, {
                 name,
                 link,
                 description,
@@ -52,7 +57,7 @@ export function CreateForm() {
                     const { message, pluginName } = data.success
                     return toast(`${pluginName.toUpperCase()} ${message}`)
                 }
-                return toast('Erro ao criar plugin')
+                return toast('Erro ao atualizar plugin')
             })
             form.reset()
         })
@@ -117,7 +122,7 @@ export function CreateForm() {
                     type="submit"
                     className="w-full hover:cursor-pointer"
                 >
-                    Adicionar
+                    Salvar
                 </Button>
             </form>
         </Form >

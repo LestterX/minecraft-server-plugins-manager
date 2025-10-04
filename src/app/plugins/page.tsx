@@ -1,5 +1,5 @@
-import { CardsArea } from "@/components/cards/CardsArea";
-import { CardsAreaNav } from "@/components/cards/CardsAreaNav";
+import { CardsArea } from "@/components/plugins-page/cards/CardsArea";
+import { CardsAreaNav } from "@/components/plugins-page/cards/CardsAreaNav";
 import { SearchBar } from "@/components/search-bar/SearchBar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Suspense } from "react";

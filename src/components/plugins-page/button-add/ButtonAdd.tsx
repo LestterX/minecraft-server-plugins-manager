@@ -1,10 +1,10 @@
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import {
     Dialog,
     DialogTrigger,
     DialogContent,
     DialogTitle
-} from "../ui/dialog";
+} from "../../ui/dialog";
 import { CreateForm } from "../create-form/CreateForm";
 import { DialogDescription } from "@radix-ui/react-dialog";
 
