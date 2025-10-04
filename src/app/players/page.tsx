@@ -1,4 +1,5 @@
 import { ButtonHome } from "@/components/button-home/ButtonHome";
+import { ButtonImportExport } from "@/components/players-page/button-import-export/ButtonImportExport";
 import { PlayersListArea } from "@/components/players-page/players-list-area/PlayersListArea";
 import { CardsAreaNav } from "@/components/plugins-page/cards/CardsAreaNav";
 import { SearchBar } from "@/components/search-bar/SearchBar";
@@ -20,6 +21,7 @@ export default async function PlayersPage({ searchParams }: TPlayersPageProps) {
       <header className="text-center">
         <h1 className="text-xl sm:text-2xl md:text-4xl font-semibold ">Lista de Jogadores</h1>
         <SearchBar>
+          <ButtonImportExport />
           <ButtonHome />
         </SearchBar>
       </header>

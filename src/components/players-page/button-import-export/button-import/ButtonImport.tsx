@@ -1,0 +1,45 @@
+"use client"
+
+import { Button } from "@/components/ui/button";
+import { importPlayersData } from "@/lib/actions";
+import { useState } from "react";
+import { toast } from "sonner";
+
+export function ButtonImport() {
+    const [file, setFile] = useState<File | null>(null);
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length > 0) {
+            setFile(e.target.files[0]);
+        }
+    };
+
+    const handleImport = async () => {
+        if (!file) return toast("Escolha um arquivo JSON primeiro");
+
+        const text = await file.text();           // lê conteúdo do arquivo
+        const dados = JSON.parse(text);           // parse para objeto JS
+
+        dados.map((el: { expiresOn: string | number | Date; }) => {
+            el.expiresOn = new Date(el.expiresOn)
+        })
+
+        const res = await importPlayersData(dados);   // chama a server action
+        if (res.success) return toast("Importação concluída!");
+    };
+    return (
+        <div className="flex flex-col gap-2">
+            {/* hidden native input, label acts as styled drop/click area */}
+            <p className="text-sm">Clique no campo abaixo para adicionar um novo arquivo</p>
+            <label className="w-full h-16 flex items-center justify-center border-2 border-dashed rounded-md cursor-pointer select-none text-center text-sm text-muted-foreground">
+                <input className="sr-only" type="file" accept="application/json" onChange={handleFileChange} />
+                {!file ? (
+                    <span className="text-2xl font-bold">+</span>
+                ) : (
+                    <span className="px-2 truncate" title={file.name}>{file.name}</span>
+                )}
+            </label>
+            <Button disabled={file ? false : true} variant={file ? "destructive" : "secondary"} onClick={handleImport} className="hover:cursor-pointer">Importar JSON para banco</Button>
+        </div>
+    )
+}

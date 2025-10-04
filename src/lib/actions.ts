@@ -92,3 +92,20 @@ export async function getAllPlayers(filter?: string) {
     })
     return players
 }
+
+export async function getAllPlayersNoFilter() {
+    const players = await prisma.player.findMany({
+        orderBy: {
+            name: 'asc',
+        }
+    })
+    return players
+}
+
+export async function importPlayersData(data: Prisma.PlayerCreateInput[]) {
+    await prisma.player.deleteMany() // limpa tabela antes de importar
+    await prisma.player.createMany({
+        data,
+    })
+    return { success: true }
+}
