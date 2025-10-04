@@ -1,7 +1,7 @@
 import { ButtonHome } from "@/components/button-home/ButtonHome";
 import { ButtonImportExport } from "@/components/players-page/button-import-export/ButtonImportExport";
+import { PlayersAreaNav } from "@/components/players-page/players-list-area/PlayersAreaNav";
 import { PlayersListArea } from "@/components/players-page/players-list-area/PlayersListArea";
-import { CardsAreaNav } from "@/components/plugins-page/cards/CardsAreaNav";
 import { SearchBar } from "@/components/search-bar/SearchBar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Suspense } from "react";
@@ -26,7 +26,7 @@ export default async function PlayersPage({ searchParams }: TPlayersPageProps) {
         </SearchBar>
       </header>
       <section className="mx-4">
-        <CardsAreaNav />
+        <PlayersAreaNav />
         <ScrollArea>
           <Suspense fallback={'Carregando...'}>
             <PlayersListArea search={query} />
