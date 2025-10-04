@@ -1,5 +1,7 @@
 import { ButtonHome } from "@/components/button-home/ButtonHome";
 import { ButtonAdd } from "@/components/plugins-page/button-add/ButtonAdd";
+import { ButtonExport } from "@/components/plugins-page/button-export/ButtonExport";
+import { ButtonImport } from "@/components/plugins-page/button-import/ButtonImport";
 import { CardsArea } from "@/components/plugins-page/cards/CardsArea";
 import { CardsAreaNav } from "@/components/plugins-page/cards/CardsAreaNav";
 import { SearchBar } from "@/components/search-bar/SearchBar";
@@ -22,6 +24,8 @@ export default async function PluginsPage({ searchParams }: TPluginsPageProps) {
         <h1 className="text-xl sm:text-2xl md:text-4xl font-semibold ">Lista de Plugins</h1>
         <SearchBar>
           <ButtonAdd />
+          <ButtonImport />
+          <ButtonExport />
           <ButtonHome />
         </SearchBar>
       </header>

@@ -19,6 +19,14 @@ export async function create(data: Prisma.PluginCreateInput) {
     }
 }
 
+export async function importData(data: Prisma.PluginCreateInput[]) {
+    await prisma.plugin.createMany({
+        data,
+        skipDuplicates: true
+    })
+    return { success: true }
+}
+
 export async function getAll(filter?: string) {
     const plugins = await prisma.plugin.findMany({
         where: {
@@ -26,6 +34,15 @@ export async function getAll(filter?: string) {
                 contains: filter
             }
         },
+        orderBy: {
+            name: 'asc',
+        }
+    })
+    return plugins
+}
+
+export async function getAllNoFilter() {
+    const plugins = await prisma.plugin.findMany({
         orderBy: {
             name: 'asc',
         }
@@ -57,6 +74,10 @@ export async function deleteById(id: string) {
     if (!plugin) return { error: 'Erro ao remover plugin' }
     return { success: 'Plugin removido com sucesso' }
 }
+
+
+
+
 
 export async function getAllPlayers(filter?: string) {
     const players = await prisma.player.findMany({
