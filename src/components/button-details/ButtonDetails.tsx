@@ -25,7 +25,6 @@ export function ButtonDetails({ plugin }: TButtonDetailsProps) {
                     Visualizar ou editar plugin
                 </DialogTitle>
                 <EditForm plugin={plugin} />
-                
             </DialogContent>
         </Dialog>
     )

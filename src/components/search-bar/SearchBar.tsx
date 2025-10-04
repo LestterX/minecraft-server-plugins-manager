@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ButtonAdd } from "../button-add/ButtonAdd";
 import { Input } from "../ui/input";
 import { useDebouncedCallback } from 'use-debounce'
+import { ButtonHome } from "../button-home/ButtonHome";
 
 export function SearchBar() {
     const searchParams = useSearchParams()
@@ -34,6 +35,7 @@ export function SearchBar() {
                 defaultValue={searchParams.get('query')?.toString()}
             />
             <ButtonAdd />
+            <ButtonHome />
         </section>
     )
 }

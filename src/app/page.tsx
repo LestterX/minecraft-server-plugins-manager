@@ -1,33 +1,18 @@
-import { CardsArea } from "@/components/cards/CardsArea";
-import { CardsAreaNav } from "@/components/cards/CardsAreaNav";
-import { SearchBar } from "@/components/search-bar/SearchBar";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Suspense } from "react";
+import { ButtonGotoPage } from "@/components/button-goto-page/ButtonGotoPage";
 
-type THomePageProps = {
-  searchParams?: Promise<{
-    query?: string;
-  }>
-}
-
-export default async function HomePage({ searchParams }: THomePageProps) {
-  const search = await searchParams
-  const query = search?.query ?? ''
-
+export default function HomePage() {
   return (
-    <section className="container mx-auto grid grid-cols-1 gap-y-2">
-      <header className="text-center">
-        <h1 className="text-xl sm:text-2xl md:text-4xl font-semibold ">Gerenciador de Plugins do Servidor</h1>
-        <SearchBar />
-      </header>
-      <section className="mx-4">
-        <CardsAreaNav />
-        <ScrollArea>
-          <Suspense fallback={'Carregando...'}>
-            <CardsArea search={query} />
-          </Suspense>
-        </ScrollArea>
-      </section>
+    <section className="container mx-auto flex justify-center items-center flex-wrap gap-y-2 gap-x-2 h-screen">
+      <ButtonGotoPage
+        displayText="Plugins"
+        href="/plugins"
+        color="bg-yellow-500"
+      />
+      <ButtonGotoPage
+        displayText="Players"
+        href="/players"
+        color="bg-green-500"
+      />
     </section>
   )
 }
